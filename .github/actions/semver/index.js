@@ -2971,10 +2971,10 @@ const core = __nccwpck_require__(127);
 const exec = __nccwpck_require__(49);
 const eol = "\n";
 
-const cmd = async (command, ...args) => {
-  let output = "",
-    errors = "";
-  const options = {
+const cmd = async (commandLine, ...args) => {
+  let output = "";
+  let errors = "";
+  let options = {
     silent: true,
   };
   options.listeners = {
@@ -2987,16 +2987,12 @@ const cmd = async (command, ...args) => {
     ignoreReturnCode: true,
     silent: true,
   };
-
-  await exec.exec(command, args, options).catch((err) => {
-    core.info(`The command '${command} ${args.join(" ")}' failed: ${err}`);
+  await exec.exec(commandLine, args, options).catch((err) => {
+    core.info(`The command '${commandLine} ${args.join(" ")}' failed: ${err}`);
   });
-
   if (errors !== "") {
     core.info(`stderr: ${errors}`);
   }
-
-  return output;
 };
 
 async function run() {
