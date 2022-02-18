@@ -1,10 +1,10 @@
 name: 'Gighub Semantic version'
 description: 'Semantic version'
-# inputs:
-#   trigger:  # id of input
-#     description: 'name of github payload'
-#     required: true
-#     default: 'push'
+inputs:
+  branch:  # id of input
+    description: 'Branch'
+    required: true
+    default: 'HEAD'
 # outputs:
 #   action:
 #     description: 'action'
