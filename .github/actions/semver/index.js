@@ -2986,7 +2986,7 @@ const cmd = async (commandLine, ...args) => {
     },
   };
   await exec.exec(commandLine, args, options).catch((err) => {
-    core.info(`The command '${command} ${args.join(" ")}' failed: ${err}`);
+    core.info(`The command '${commandLine} ${args.join(" ")}' failed: ${err}`);
   });
   if (errors !== "") {
     core.info(`stderr: ${errors}`);
@@ -2997,11 +2997,12 @@ async function run() {
   try {
     let branch = core.getInput("branch", { required: true });
     if (branch === "HEAD") {
-      result = await exec.exec("git", "rev-parse", "develop");
+      result = await cmd("git", "rev-parse", "develop");
       console.log(result);
     }
     // console.log(branch);
   } catch (error) {
+    console.log(error);
     core.setFailed(error.message);
   }
 }
