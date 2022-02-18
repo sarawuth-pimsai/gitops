@@ -30,23 +30,30 @@ const cmd = async (commandLine, ...args) => {
 async function run() {
   try {
     let branch = core.getInput("branch", { required: true }); //output hash git commit
+    // let branchDevelop = (await cmd("git", "rev-parse", "develop")).trim();
     if (branch === "HEAD") {
       branch = (await cmd("git", "rev-parse", "HEAD")).trim();
     }
     let lastCommitAll = (await cmd("git", "rev-list", "-n1", "--all")).trim();
-    console.log("last commit all");
-    console.log(lastCommitAll);
+    console.log("last commit all", lastCommitAll);
     let currentTag = (
       await cmd(`git tag --points-at ${branch} *[0-9].*[0-9].*[0-9]`)
     ).trim();
-    console.log("current tag");
-    console.log(currentTag);
-    let logCommand = `git log --prettry="%s" --author-date-order ${branch}`;
-    const log = await cmd(logCommand);
-    console.log("logs");
-    console.log(log);
+    console.log("current tag", currentTag);
+    let logCommand = `git log --pretty="%s" --author-date-order ${branch}`;
+    // let logCommand = `git log --pretty="%s" --author-date-order ${branchDevelop}..${branch}`;
+    const logs = await cmd(logCommand);
+    console.log("logs", logs);
+    const logChangedFiles = await cmd(
+      `git log --name-only --oneline ${branch}`
+    );
+    console.log("log change files", logChangedFiles);
+    let history = logs.trim().split(eol).reverse();
+    console.log("history", history);
+    let branches = await cmd(`git branch`);
+    console.log(branches, branches);
   } catch (error) {
-    console.log(error);
+    core.error(error);
     core.setFailed(error.message);
   }
 }
