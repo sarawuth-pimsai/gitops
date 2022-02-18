@@ -41,6 +41,10 @@ async function run() {
     ).trim();
     console.log("current tag");
     console.log(currentTag);
+    let logCommand = `git log --prettry="%s" --author-date-order ${branch}`;
+    const log = await cmd(logCommand);
+    console.log("logs");
+    console.log(log);
   } catch (error) {
     console.log(error);
     core.setFailed(error.message);
