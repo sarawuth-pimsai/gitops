@@ -28,10 +28,10 @@ async function run() {
   try {
     let branch = core.getInput("branch", { required: true });
     console.log(branch);
-    if (branch === "HEAD") {
-      branch = await cmd("git", "rev-parse", "HEAD");
-    }
-    console.log(branch);
+    // if (branch === "HEAD") {
+    //   branch = await cmd("git", "rev-parse", "HEAD");
+    // }
+    // console.log(branch);
   } catch (error) {
     core.setFailed(error.message);
   }
