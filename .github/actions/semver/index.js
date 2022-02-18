@@ -2997,7 +2997,7 @@ async function run() {
   try {
     let branch = core.getInput("branch", { required: true });
     if (branch === "HEAD") {
-      result = await exec.exec("git", "rev-parse", "HEAD");
+      result = await exec.exec("git", "rev-parse", "develop");
       console.log(result);
     }
     // console.log(branch);
