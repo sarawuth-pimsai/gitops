@@ -2,33 +2,39 @@ const core = require("@actions/core");
 const exec = require("@actions/exec");
 const eol = "\n";
 
-const cmd = async (commandLine, ...args) => {
-  let output = "";
-  let errors = "";
-  let options = {
+const cmd = async (command, ...args) => {
+  let output = "",
+    errors = "";
+  const options = {
     silent: true,
   };
-  options.listenners = {
+  options.listeners = {
     stdout: (data) => {
       output += data.toString();
     },
     stderr: (data) => {
       errors += data.toString();
     },
+    ignoreReturnCode: true,
+    silent: true,
   };
-  await exec.exec(commandLine, args, options).catch((err) => {
-    core.info(`The command '${commandLine} ${args.join(" ")}' failed: ${err}`);
+
+  await exec.exec(command, args, options).catch((err) => {
+    core.info(`The command '${command} ${args.join(" ")}' failed: ${err}`);
   });
+
   if (errors !== "") {
     core.info(`stderr: ${errors}`);
   }
+
+  return output;
 };
 
 async function run() {
   try {
     let branch = core.getInput("branch", { required: true });
     if (branch === "HEAD") {
-      result = await cmd("git", "rev-parse", "develop");
+      result = (await cmd("git", "rev-parse", "HEAD")).trim();
       console.log(result);
     }
     // console.log(branch);
