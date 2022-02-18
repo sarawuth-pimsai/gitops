@@ -29,12 +29,18 @@ const cmd = async (commandLine, ...args) => {
 
 async function run() {
   try {
-    let branch = core.getInput("branch", { required: true });
+    let branch = core.getInput("branch", { required: true }); //output hash git commit
     if (branch === "HEAD") {
-      result = (await cmd("git", "rev-parse", "HEAD")).trim();
-      console.log(result);
+      branch = (await cmd("git", "rev-parse", "HEAD")).trim();
     }
-    // console.log(branch);
+    let lastCommitAll = (await cmd("git", "rev-list", "-n1", "--all")).trim();
+    console.log("last commit all");
+    console.log(lastCommitAll);
+    let currentTag = (
+      await cmd(`git tag --points-at ${branch} *[0-9].*[0-9].*[0-9]`)
+    ).trim();
+    console.log("current tag");
+    console.log(currentTag);
   } catch (error) {
     console.log(error);
     core.setFailed(error.message);
