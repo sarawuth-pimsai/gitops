@@ -3018,7 +3018,7 @@ async function run() {
     let history = logs.trim().split(eol).reverse();
     console.log("history", history);
   } catch (error) {
-    console.log(error);
+    core.error(error);
     core.setFailed(error.message);
   }
 }
