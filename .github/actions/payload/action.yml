@@ -1,0 +1,15 @@
+name: 'Gighub Payload'
+description: 'Show Github Payload'
+inputs:
+  trigger:  # id of input
+    description: 'name of github payload'
+    required: true
+    default: 'push'
+outputs:
+  action:
+    description: 'action'
+  payload: # id of output
+    description: 'Object of payload'
+runs:
+  using: 'node16'
+  main: 'index.js'
