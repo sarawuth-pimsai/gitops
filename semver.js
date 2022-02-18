@@ -34,17 +34,20 @@ async function run() {
       branch = (await cmd("git", "rev-parse", "HEAD")).trim();
     }
     let lastCommitAll = (await cmd("git", "rev-list", "-n1", "--all")).trim();
-    console.log("last commit all");
-    console.log(lastCommitAll);
+    console.log("last commit all", lastCommitAll);
     let currentTag = (
       await cmd(`git tag --points-at ${branch} *[0-9].*[0-9].*[0-9]`)
     ).trim();
-    console.log("current tag");
-    console.log(currentTag);
+    console.log("current tag", currentTag);
     let logCommand = `git log --pretty="%s" --author-date-order ${branch}`;
-    const log = await cmd(logCommand);
-    console.log("logs");
-    console.log(log);
+    const logs = await cmd(logCommand);
+    console.log("logs", logs);
+    const logChangedFiles = await cmd(
+      `git log --name-only --oneline ${branch}`
+    );
+    console.log("log change files", logChangedFiles);
+    let history = logs.trim().split(eol).reverse();
+    console.log("history", history);
   } catch (error) {
     console.log(error);
     core.setFailed(error.message);
