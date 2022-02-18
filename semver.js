@@ -24,6 +24,7 @@ const cmd = async (commandLine, ...args) => {
   if (errors !== "") {
     core.info(`stderr: ${errors}`);
   }
+  return output;
 };
 
 async function run() {
