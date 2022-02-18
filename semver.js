@@ -30,8 +30,8 @@ const cmd = async (commandLine, ...args) => {
 async function run() {
   try {
     let branch = core.getInput("branch", { required: true }); //output hash git commit
-    let branchDevelop = (await cmd(`git rev-parse develop`)).trim();
-    let branchMain = await cmd(`git rev-parse main`);
+    let branchDevelop = (await cmd("git", "rev-parse", "develop")).trim();
+    let branchMain = await cmd("git", "rev-parse", "main");
     if (branch === "HEAD") {
       branch = (await cmd("git", "rev-parse", "HEAD")).trim();
     }
