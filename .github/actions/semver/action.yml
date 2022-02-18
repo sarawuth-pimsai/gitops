@@ -4,7 +4,7 @@ inputs:
   branch:  # id of input
     description: 'Branch'
     required: true
-    default: 'HEAD'
+    default: "HEAD"
 # outputs:
 #   action:
 #     description: 'action'

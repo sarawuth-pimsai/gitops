@@ -12,8 +12,6 @@ jobs:
       - name: Hello world action step
         uses: ./.github/actions/semver # Uses an action in the root directory
         id: semver
-        with:
-          branch: HEAD
       # # Use the output from the `hello` step
       # - name: Get the output trigger
       #   run: echo "The trigger was ${{ steps.hello.outputs.trigger }}"
