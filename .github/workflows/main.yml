@@ -13,7 +13,7 @@ jobs:
         uses: ./.github/actions/payload # Uses an action in the root directory
         id: hello
         with:
-          action: 'push'
+          trigger: 'push'
       # Use the output from the `hello` step
-      - name: Get the output action
-        run: echo "The action was ${{ steps.hello.outputs.action }}"
+      - name: Get the output trigger
+        run: echo "The trigger was ${{ steps.hello.outputs.trigger }}"
