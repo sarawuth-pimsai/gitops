@@ -4,6 +4,7 @@ const github = require("@actions/github");
 try {
   const trigger = core.getInput("trigger");
   const payload = JSON.stringify(github.context.payload, undefined, 2);
+  console.log(payload);
   core.setOutput("payload", payload);
   core.setOutput("trigger", trigger);
 } catch (error) {
