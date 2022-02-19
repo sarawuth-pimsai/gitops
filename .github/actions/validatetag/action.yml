@@ -1,0 +1,15 @@
+name: 'Gighub Actions Validate Tag'
+description: 'Validate semantic version tag'
+inputs:
+  branch:  # id of input
+    description: 'Branch'
+    required: true
+    default: "HEAD"
+# outputs:
+#   action:
+#     description: 'action'
+#   payload: # id of output
+#     description: 'Object of payload'
+runs:
+  using: 'node16'
+  main: 'index.js'
