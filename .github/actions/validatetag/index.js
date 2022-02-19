@@ -3017,6 +3017,8 @@ const run = async () => {
       tag = "";
     }
     console.log("tag: ", tag);
+    const branchs = (await cmd("git", "branch")).split("\n");
+    console.log(branchs);
     // Get root
     // Get branch
     // logs commit
