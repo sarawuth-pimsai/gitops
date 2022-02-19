@@ -113,8 +113,9 @@ const run = async () => {
     // logs commit
     //
   } catch (error) {
-    core.error(error);
-    core.setFailed(error.message);
+    console.log(error);
+    // core.error(error);
+    // core.setFailed(error.message);
   }
 };
 run();
