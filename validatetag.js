@@ -47,7 +47,9 @@ const run = async () => {
     } catch (error) {
       tag = "";
     }
-    console.log("tag: ", tag);
+    console.log("tag: \n", tag);
+    const logs = (await cmd("git", "log", "--pretty=oneline")).split("\n");
+    console.log("logs: \n", logs);
     // Get root
     // Get branch
     // logs commit
