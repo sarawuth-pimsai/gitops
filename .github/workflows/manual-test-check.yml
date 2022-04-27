@@ -1,0 +1,30 @@
+name: Manaul test check
+on:
+  workflow_dispatch:
+    inputs:
+      debug_env:
+        required: false
+        type: boolean
+        description: 'Debug env'
+jobs:
+  print_env:
+    if: github.event.inputs.debug_env == 'true'
+    runs-on: [self-hosted]
+    steps:
+      - name: 'Github Env'
+        env:
+          ENV_BRANCH_NAME: ${{github.ref_name}}
+          ENV_BRANCH: ${{github.ref}}
+          ENV_VALUE: ${{ toJSON(github) }}
+        run: |
+          echo 'branch name: ${{env.ENV_BRANCH_NAME}}'
+          echo 'branch: ${{env.ENV_BRANCH}}'
+          echo '${{env.ENV_VALUE}}'
+  check_flow:
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'Check Info'
+        uses: ./.github/actions/check
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}

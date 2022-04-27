@@ -4,6 +4,7 @@
   "description": "study github actions",
   "main": "index.js",
   "scripts": {
+    "build:hotfix": "ncc build src/merge_hotfix/main.js -o .github/actions/merge_hotfix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

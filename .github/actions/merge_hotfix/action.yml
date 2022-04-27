@@ -1,5 +1,5 @@
-name: 'Semantic Versioning'
-description: 'Semantic Versioning Releases'
+name: 'Merge hotfix'
+description: 'Merge hotfix branch to main branch and Reset and rebase dev branch'
 inputs:
   token:
     required: true

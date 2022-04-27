@@ -1,0 +1,15 @@
+name: Debug github branches
+description: 'Debug branch'
+inputs:
+  branch_rebase:
+    required: true
+    description: Base branch for rebase
+  branch_dev:
+    required: true
+    description: Dev branch for re open pull request
+  token:
+    required: true
+    description: Github token
+runs:
+  using: 'node16'
+  main: 'index.js'

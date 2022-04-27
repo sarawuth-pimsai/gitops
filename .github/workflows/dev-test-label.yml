@@ -1,0 +1,12 @@
+name: Develop Test Label
+on:
+  pull_request:
+    branches:
+      - dev
+    types: [ labeled ]
+jobs:
+  idle:
+    runs-on: [self-hosted]
+    steps:
+      - name: Branch
+        run: echo ${{ github.ref }}

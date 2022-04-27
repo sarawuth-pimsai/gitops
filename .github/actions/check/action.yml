@@ -1,5 +1,5 @@
-name: 'Semantic Versioning'
-description: 'Semantic Versioning Releases'
+name: Debug github check
+description: 'Debug github check rest api'
 inputs:
   token:
     required: true
