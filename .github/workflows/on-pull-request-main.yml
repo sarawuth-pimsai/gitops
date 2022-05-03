@@ -1,0 +1,13 @@
+name: On Pull Request Main
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  print_event_env:
+    runs-on: [self-hosted]
+    steps:
+      - run: echo '${{ toJSON(github.event.pull_request) }}'
+  use_rebase:
+    runs-on: [self-hosted]
+    steps:
+      - uses: ./.github/rebase
