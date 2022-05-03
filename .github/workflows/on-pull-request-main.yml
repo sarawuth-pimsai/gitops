@@ -10,4 +10,4 @@ jobs:
   use_rebase: 
     runs-on: [self-hosted]
     steps:
-      - uses: ./.github/actions/rebase
+      - uses: sarawuth-pimsai/gitops/.github/actions/rebase
