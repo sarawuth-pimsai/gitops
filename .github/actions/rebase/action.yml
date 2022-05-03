@@ -1,0 +1,20 @@
+name: Rebase branch
+description: Rebase branch
+inputs:
+  token:
+    required: true
+    description: Github access token
+  base_branch:
+    required: true
+    description: Github base branch (ref)
+    type: string
+  head_branch:
+    required: true
+    description: Github head branch (ref)
+    type: string
+outputs:
+  success:
+    description: status process
+runs:
+  using: 'node16'
+  main: 'index.js'

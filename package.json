@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:hotfix": "ncc build src/merge_hotfix/main.js -o .github/actions/merge_hotfix",
+    "build:rebase": "ncc build src/rebase/main.js -o .github/actions/rebase",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +23,8 @@
     "@actions/core": "^1.6.0",
     "@actions/exec": "^1.1.0",
     "@actions/github": "^5.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.33.4"
   }
 }
